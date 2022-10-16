@@ -8,6 +8,8 @@ document.getElementById("player1_score").innerHTML=player1_score;
 document.getElementById("player2_score").innerHTML=player2_score;
 document.getElementById("player_question").innerHTML="Question Turn - " + player1;
 document.getElementById("player_answer").innerHTML="Answer Turn - " + player2;
+ var question_turn = "player1";
+ var answer_turn = "player2";
 
 function send(){
     getword=document.getElementById("word").value;
@@ -26,4 +28,44 @@ check_button="<br><br><button class='btn btn-info' onclick='check()'>Check</butt
 row = question_word + input_box + check_button;
 document.getElementById("output").innerHTML = row;
 document.getElementById("word").value = "";
+}
+
+
+function check()
+{
+    get_answer = document.getElementById("input_check_box").value;
+    answer = get_answer.toLowerCase();
+    if(answer == word)
+    {
+       if(answer_turn == "player1")
+       {
+        player1_score = player1_score +1;
+        document.getElementById("player1_score").innerHTML = player1_score;
+       }
+       else{
+        player2_score = player2_score +1;
+        document.getElementById("player2_score").innerHTML = player2_score;
+       }
+    }
+    
+    if(question_turn == "player1")
+    {
+     question_turn= "player2";
+     document.getElementById("player_question").innerHTML = "Question Turn - "  + player2;
+    }
+    else{
+     question_turn = "player1";
+     document.getElementById("player_question").innerHTML = "Question Turn - " + player1;
+    }
+    
+    if(answer_turn == "player1")
+    {
+     answer_turn= "player2";
+     document.getElementById("player_answer").innerHTML = "Answer Turn - "  + player2;
+    }
+    else{
+     answer_turn = "player1";
+     document.getElementById("player_answer").innerHTML = "Answer Turn - " + player1;
+    }
+    document.getElementById("output").innerHTML = "";
 }
